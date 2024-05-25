@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-<h2>Ingresar Horas</h2>
-
 <div class="form-group">
   <label for="trabajadorSelect">Seleccione un trabajador:</label>
   <input class="form-control" id="trabajadorSelect" [(ngModel)]="selectedTrabajador" (input)="onInputChangeTrabajadores($event)" list="trabajadoresList">
@@ -22,9 +20,19 @@
   </datalist>
 </div>
 
+<mat-form-field appearance="fill">
+    <mat-label>Fecha</mat-label>
+    <input matInput [matDatepicker]="picker" placeholder="Elige una fecha">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
 <div>
   <label for="horas">Horas trabajadas:</label>
+  <br>
   <input type="number" id="horas" [(ngModel)]="horasTrabajadas" required>
 </div>
 
-<button (click)="guardarHoras()">Guardar</button>
+<br>
+
+<button (click)="guardarHoras()">Guardar</button>   
