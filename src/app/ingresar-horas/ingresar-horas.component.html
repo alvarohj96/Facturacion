@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<h2>Ingresar Horas</h2>
+
+<div class="form-group">
+  <label for="trabajadorSelect">Seleccione un trabajador:</label>
+  <input class="form-control" id="trabajadorSelect" [(ngModel)]="selectedTrabajador" (input)="onInputChangeTrabajadores($event)" list="trabajadoresList">
+  <datalist id="trabajadoresList">
+    <option *ngFor="let trabajador of filteredTrabajadores" [value]="trabajador.nombre">
+      {{ trabajador.nombre }}
+    </option>
+  </datalist>
+</div>
+
+<div class="form-group">
+  <label for="proyectoSelect">Seleccione un proyecto:</label>
+  <input class="form-control" id="proyectoSelect" [(ngModel)]="selectedProyecto" (input)="onInputChangeProyectos($event)" list="proyectosList">
+  <datalist id="proyectosList">
+    <option *ngFor="let proyecto of filteredProyectos" [value]="proyecto.id">
+      {{ proyecto.id }}
+    </option>
+  </datalist>
+</div>
+
+<div>
+  <label for="horas">Horas trabajadas:</label>
+  <input type="number" id="horas" [(ngModel)]="horasTrabajadas" required>
+</div>
+
+<button (click)="guardarHoras()">Guardar</button>

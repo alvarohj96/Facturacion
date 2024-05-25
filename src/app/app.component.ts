@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'facturacion-front';
+  componenteVisible: string | null = null;
+
+  mostrarComponente(componente: string) {
+    this.componenteVisible = this.componenteVisible === componente ? null : componente;
+  }
 }
+
