@@ -1,6 +1,18 @@
-<h2>Resumen de horas trabajadas por día</h2>
-<ul>
-  <li *ngFor="let item of horasPorDia">
-    <strong>{{ item.dia }}</strong>: {{ item.horas }} horas
-  </li>
-</ul>
+<div class="table-container">
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Empleado</th>
+          <th *ngFor="let dia of daysInMonth" [ngClass]="{'current-day': dia === currentDay}">Día {{ dia }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trabajador of trabajadores">
+          <td>{{ trabajador.nombre }}</td>
+          <td *ngFor="let hora of trabajador.horas; let i = index" [ngClass]="{'current-day': i + 1 === currentDay}">{{ hora }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

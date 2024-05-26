@@ -1,0 +1,20 @@
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh; /* Asegura que la altura del contenedor sea la altura completa de la ventana */
+  }
+  
+  .table-responsive {
+    margin: 20px 0;
+  }
+  
+  .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+  }
+
+  .current-day {
+    font-weight: bold;
+  }
