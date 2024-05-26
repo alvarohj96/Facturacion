@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th>Empleado</th>
-          <th *ngFor="let dia of daysInMonth" [ngClass]="{'current-day': dia === currentDay}">Día {{ dia }}</th>
+          <th *ngFor="let dia of daysInMonth">Día {{ dia }}</th>
         </tr>
       </thead>
       <tbody>
