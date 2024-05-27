@@ -23,6 +23,7 @@ export class IngresarHorasComponent {
   selectedTrabajador: string = '';
   selectedProyecto: string = '';
   horasTrabajadas: number = 0;
+  selectedFecha: Date = new Date();
 
   constructor(private trabajadoresService: TrabajadoresService, private http: HttpClient) { }
 
@@ -58,6 +59,8 @@ export class IngresarHorasComponent {
       console.log("El número está dentro del rango permitido.");
       const payload = { 
         selectedTrabajador: this.selectedTrabajador,
+        selectedProyecto: this.selectedProyecto,
+        selectedFecha: this.selectedFecha,
         horasTrabajadas: this.horasTrabajadas
       };
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

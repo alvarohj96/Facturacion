@@ -20,10 +20,10 @@ export class TrabajadoresService {
   constructor() { }
 
   private trabajadores: Trabajador[] = [
-    { id: '1', nombre: 'Juan Pérez', horas: Array(31).fill(0).map(() => Math.floor(Math.random() * 10)) },
-    { id: '2', nombre: 'Laura García', horas: Array(31).fill(0).map(() => Math.floor(Math.random() * 10)) },
-    { id: '3', nombre: 'Carlos Sánchez', horas: Array(31).fill(0).map(() => Math.floor(Math.random() * 10)) },
-    { id: '4', nombre: 'Elena Torres', horas: Array(31).fill(0).map(() => Math.floor(Math.random() * 10)) }
+    { id: '1', nombre: 'Juan Pérez', horas: Array(31).fill(0).map(() => 0) },
+    { id: '2', nombre: 'Laura García', horas: Array(31).fill(0).map(() => 0) },
+    { id: '3', nombre: 'Carlos Sánchez', horas: Array(31).fill(0).map(() => 0) },
+    { id: '4', nombre: 'Elena Torres', horas: Array(31).fill(0).map(() => 0) }
   ];
 
   private proyectos: Proyecto[] = [
