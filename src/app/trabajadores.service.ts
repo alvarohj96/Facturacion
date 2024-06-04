@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 export interface Trabajador {
@@ -17,7 +17,7 @@ export interface Proyecto {
   providedIn: 'root'
 })
 export class TrabajadoresService {
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   private trabajadores: Trabajador[] = [
     { id: '1', nombre: 'Juan Pérez', horas: Array(31).fill(0).map(() => 0) },
@@ -25,6 +25,16 @@ export class TrabajadoresService {
     { id: '3', nombre: 'Carlos Sánchez', horas: Array(31).fill(0).map(() => 0) },
     { id: '4', nombre: 'Elena Torres', horas: Array(31).fill(0).map(() => 0) }
   ];
+  // obtenerTrabajadores() {
+  //   this.http.get('http://127.0.0.1:5000/obtener-horas')
+  //     .subscribe(response => {
+  //       console.log('Trabajadores:', response);
+  //       this.trabajadores = response as any[];
+  //     }, error => {
+  //       console.error('Error al obtener trabajadores:', error);
+  //     });
+  //     return this.trabajadores;
+  // }
 
   private proyectos: Proyecto[] = [
     { id: '10000001', descripcion: 'Proyecto 1' },
@@ -33,11 +43,11 @@ export class TrabajadoresService {
     { id: '10000004', descripcion: 'Proyecto 4' }
   ];
 
-  obtenerTrabajadores(): Observable<Trabajador[]> {
-//    return this.http.get('url-a-tu-api');
-  // Simulamos una respuesta HTTP con el método 'of' de RxJS
-    return of(this.trabajadores);
-  }
+//   obtenerTrabajadores(): Observable<Trabajador[]> {
+// //    return this.http.get('url-a-tu-api');
+//   // Simulamos una respuesta HTTP con el método 'of' de RxJS
+//     return of(this.trabajadores);
+//   }
 
   obtenerProyectos(): Observable<Proyecto[]> {
     return of(this.proyectos)

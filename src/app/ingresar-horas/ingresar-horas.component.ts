@@ -28,11 +28,16 @@ export class IngresarHorasComponent {
   constructor(private trabajadoresService: TrabajadoresService, private http: HttpClient) { }
 
   ngOnInit(): void {
+    
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.trabajadoresService.obtenerTrabajadores().subscribe(data => {
-      this.trabajadores = data;
-      this.filteredTrabajadores = this.trabajadores;
-    });
+    this.http.get('http://127.0.0.1:5000/obtener-horas', { headers })
+      .subscribe(response => {
+        console.log('Trabajadores:', response);
+        this.trabajadores = response as any[];
+      }, error => {
+        console.error('Error al obtener trabajadores:', error);
+      });
     this.trabajadoresService.obtenerProyectos().subscribe(data => {
       this.proyectos = data;
       this.filteredProyectos = this.proyectos;

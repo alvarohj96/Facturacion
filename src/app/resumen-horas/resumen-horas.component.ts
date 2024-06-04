@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { TrabajadoresService, Trabajador, Proyecto } from '../trabajadores.service';
 
@@ -22,15 +23,18 @@ export class ResumenHorasComponent implements OnInit {
   currentDay: number = this.currentDate.getDate();
   daysInMonth: number[] = [];
 
-  constructor(private trabajadoresService: TrabajadoresService ) { 
+  constructor(private trabajadoresService: TrabajadoresService, private http: HttpClient ) { 
     this.daysInMonth = this.getDaysInMonth(this.currentYear, this.currentMonth);
   }
 
   ngOnInit(): void {
-    console.log(this.currentDay);
-    this.trabajadoresService.obtenerTrabajadores().subscribe(data => {
-      this.trabajadores = data;
-    });
+    this.http.get('http://127.0.0.1:5000/obtener-horas')
+      .subscribe(response => {
+        console.log('Trabajadores:', response);
+        this.trabajadores = response as any[];
+      }, error => {
+        console.error('Error al obtener trabajadores:', error);
+      });
   }
 
   getDaysInMonth(year: number, month: number): number[] {
