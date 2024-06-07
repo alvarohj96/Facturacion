@@ -1,0 +1,8 @@
+<!-- src/app/success-dialog/success-dialog.component.html -->
+<h1 mat-dialog-title>{{ data.success ? 'Éxito' : 'Error' }}</h1>
+<div mat-dialog-content>
+  <p>{{ data.success ? 'Las horas se han añadido correctamente.' : 'Las horas no se han añadido correctamente.' }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Aceptar</button>
+</div>

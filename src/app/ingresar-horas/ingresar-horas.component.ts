@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { Injectable } from '@angular/core';
 
 import { TrabajadoresService, Trabajador, Proyecto } from '../trabajadores.service';
 import { MAX_HORAS, MIN_HORAS } from '../constantes';
+import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
 
-
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-ingresar-horas',
@@ -25,7 +31,7 @@ export class IngresarHorasComponent {
   horasTrabajadas: number = 0;
   selectedFecha: Date = new Date();
 
-  constructor(private trabajadoresService: TrabajadoresService, private http: HttpClient) { }
+  constructor(private trabajadoresService: TrabajadoresService, private http: HttpClient, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     
@@ -60,7 +66,6 @@ export class IngresarHorasComponent {
 
   guardarHoras() {
 
-    if (this.validarHoras(this.horasTrabajadas)) {
       console.log("El número está dentro del rango permitido.");
       const payload = { 
         selectedTrabajador: this.selectedTrabajador,
@@ -70,14 +75,16 @@ export class IngresarHorasComponent {
       };
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post('http://127.0.0.1:5000/log', payload, { headers })
-        .subscribe(response => { console.log('Response from Back-end:', response); });
-    } else {
-      console.log("El número está fuera del rango permitido: (", MIN_HORAS, "-", MAX_HORAS,")");
+      this.http.post('http://127.0.0.1:5000/log', payload, {  headers, observe: 'response' }).subscribe(response => { 
+        if (response.status === 200) {
+          this.dialog.open(SuccessDialogComponent, {
+            data: { success: true }
+          });
+        }
+      }, error => {
+        this.dialog.open(SuccessDialogComponent, {
+          data: { success: false }
+        });
+      });
     }
-  }
-
-  validarHoras(numero: number): boolean {
-    return numero > MIN_HORAS && numero < MAX_HORAS;
-  }
 }
