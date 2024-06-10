@@ -11,5 +11,15 @@ export class ControlAdministradorComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  crearProyecto() {
+    // Lógica para crear un nuevo proyecto
+    console.log('Crear nuevo proyecto');
+    // Aquí podrías abrir un modal, redirigir a otra página, etc.
+  }
 
+  crearUsuario() {
+    // Lógica para crear un nuevo usuario
+    console.log('Crear nuevo usuario');
+    // Aquí podrías abrir un modal, redirigir a otra página, etc.
+  }
 }
